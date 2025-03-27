@@ -23,6 +23,10 @@ public class TaskService {
         return taskRepository.findById(id);
     }
 
+    public List<Task> getTasksByTitle(String title) {
+        return taskRepository.findByTitleContainingIgnoreCase(title);
+    }
+
 
     public Task createTask(Task task) {
         return taskRepository.save(task);

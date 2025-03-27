@@ -31,6 +31,12 @@ public class TaskController {
                 .orElseGet(() -> ResponseEntity.status(404).body("Task with id: " + id + " not found"));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Task>> getTasksByTitle(@RequestParam String title) {
+        List<Task> matchedTasks = taskService.getTasksByTitle(title);
+        return ResponseEntity.ok(matchedTasks);
+    }
+
     @PostMapping("/createTask")
     public ResponseEntity<Task> createTask(@RequestBody Task task) {
         Task createdTask = taskService.createTask(task);
